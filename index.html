@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>in2vate - Charts</title>
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/data.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <style>
+
+        .centerMain {
+            margin-left: auto;
+            margin-right: auto;
+            float:left;
+            width:100%;
+        }
+
+        #chartDataTable {
+            float:left;
+            width:450px;
+            margin-top: 20px;
+        }
+
+        #datatable {
+            font-family:arial;
+            font-size:12px;
+        }
+        #datatable th {
+            text-align: left;
+        }
+        #datatable td {
+            text-align: left;
+        }
+
+        #nav {
+            width: 100%;
+            float: left;
+            margin: 0 0 3em 0;
+            padding: 0;
+            list-style: none;
+            background-color: #f2f2f2;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+        #nav li {
+            float: left; }
+
+        #nav li a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #069;
+            border-right: 1px solid #ccc; }
+
+        #nav li a:hover {
+            color: #c00;
+            background-color: #fff; }
+
+    </style>
+
+
+    <script>
+        $(function () {
+            $('#chartContainer').highcharts({
+                data: {
+                    table: document.getElementById('datatable')
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Total scores (By Location/Departments)'
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    title: {
+                        text: 'Total Scores'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' + this.point.y + ' ' + this.point.name.toLowerCase();
+                    }
+                }
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+<!--BASIC LOGO HEADER-->
+<div id="header">
+    <div id="errormsg"></div>
+    <a href="/cfwt">
+        <img src="http://in2vate.com/cdam/Temp%20Links/logo_homepageheader.jpg" alt="" width="568" height="127" />
+    </a>
+
+</div>
+<!--END LOGO HEADER-->
+<ul id="nav">
+    <li><a href="index.html">Breakdown (by depts)</a></li>
+    <!--li><a href="chartCombined.html">Combined</a></li-->
+    <li><a href="chartAverage.html">Average scores (by depts)</a></li>
+</ul>
+
+<div id="chartContainer" style="min-width: 310px; max-width: 960px; margin: 0 auto"></div>
+
+<div class="row">
+
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <p>
+            <button type="button" id="btnToggleChart" class="btn btn-primary btn-sm">Show table</button>
+        </p>
+        <script>
+            $( "#btnToggleChart" ).click(function() {
+                $( "#chartTable" ).toggle();
+                if($(this).text()=="Show table"){
+                    $(this).text("Hide table");
+                }
+                else {
+                    $(this).text("Show table");
+                }
+            });
+        </script>
+
+        <div class="panel panel-default" id="chartTable" style="display: none;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Location Totals</h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="chartMainDetails">
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>County</th>
+                                    <th>School Dist.</th>
+                                    <th>Fire Dept.</th>
+                                    <th>Police Dept.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Los Angeles</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Sacramento</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Morengo</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Dekalb</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>San Francisco</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Oakland</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>LaSalle</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Orange</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>San Diego</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Hobart</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                                <tr>
+                                    <th>Michigan City</th>
+                                    <td>8.55</td>
+                                    <td>9.45</td>
+                                    <td>9.55</td>
+                                    <td>7.45</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+    <!--div id="chartDataTable" style="float:left;">
+        <table id="datatable">
+            <thead>
+            <tr>
+                <th></th>
+                <th>County</th>
+                <th>School Dist.</th>
+                <th>Fire Dept.</th>
+                <th>Police Dept.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Los Angeles</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Sacramento</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Morengo</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Dekalb</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>San Francisco</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Oakland</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>LaSalle</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Orange</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>San Diego</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Hobart</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            <tr>
+                <th>Michigan City</th>
+                <td>8.55</td>
+                <td>9.45</td>
+                <td>9.55</td>
+                <td>7.45</td>
+            </tr>
+            </tbody>
+        </table>
+    </div-->
+
+    <!--div id="chartDataTable_totals" style="float:left;">
+        <table id="datatable2">
+            <thead>
+            <tr>
+                <th>Department</th>
+                <th>Total Count</th>
+                <th>Total Score</th>
+                <th>Average</th>
+                <th>Sub Total</th>
+                <th>Sub Average</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>CO</th>
+                <td>11</td>
+                <td>102</td>
+                <td>9.27</td>
+                <td>52</td>
+                <td>4.73</td>
+            </tr>
+            <tr>
+                <th>SD</th>
+                <td>11</td>
+                <td>100</td>
+                <td>9.09</td>
+                <td>51</td>
+                <td>4.64</td>
+            </tr>
+            <tr>
+                <th>FD</th>
+                <td>11</td>
+                <td>103</td>
+                <td>9.36</td>
+                <td>53</td>
+                <td>4.82</td>
+            </tr>
+            <tr>
+                <th>PD</th>
+                <td>11</td>
+                <td>100</td>
+                <td>9.09</td>
+                <td>51</td>
+                <td>4.64</td>
+            </tr>
+            <tr>
+                <th>ALL</th>
+                <td>44</td>
+                <td>405.00</td>
+                <td>9.20</td>
+                <td>207</td>
+                <td>4.70</td>
+            </tr>
+            </tbody>
+        </table>
+    </div-->
+
+</div>
+
+</body>
+</html>
